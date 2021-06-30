@@ -1,0 +1,20 @@
+---
+version: "3.7"
+services:
+#  python:
+#    build:
+#      dockerfile: docker/images/lambda-python/Dockerfile
+#      context: .
+#    volumes:
+#      - .:/usr/src/app
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    volumes:
+      - ./user-database/init.sql:/docker-entrypoint-initdb.d/init.sql
