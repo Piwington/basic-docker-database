@@ -18,7 +18,7 @@ def postgres_insert(row):
         cursor = connection.cursor()
         cursor.execute(
             "INSERT INTO system_users (forename, surname, email, phone_number) VALUES (%s, %s, %s, %s)",
-            (row("forename"), row("surname"), row("email"), row("phone_number"))
+            (row["forename"], row["surname"], row["email"], row["phone_number"])
         )
         connection.commit()
     finally:
@@ -26,3 +26,6 @@ def postgres_insert(row):
             cursor.close()
         if connection is not None:
             connection.close()
+
+
+postgres_insert({"forename": "A", "surname": "B", "email": "@", "phone_number": "099"})
