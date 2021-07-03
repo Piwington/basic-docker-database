@@ -7,7 +7,7 @@ def index():
     return "Index"
 
 
-@server.route("/hello/<str:temp>")
+@server.route("/hello/<temp>")
 def hello(temp):
     return "Hello World! %s" % temp
 
