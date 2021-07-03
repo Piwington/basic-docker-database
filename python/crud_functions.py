@@ -8,7 +8,8 @@ def postgres_connection():
     connection = psycopg2.connect(
         database="postgres",
         user="user",
-        password="password"
+        password="password",
+        host="host.docker.internal"
     )
     return connection
 
@@ -63,8 +64,8 @@ def crud_sorter(crud, row):
             raise Exception
 
         connection.commit()
-    except:
-        return "Error"
+    except Exception as e:
+        return e
     finally:
         if cursor is not None:
             cursor.close()
@@ -77,7 +78,7 @@ def crud_sorter(crud, row):
 def hello(crud, row):
     prepped = json.loads(row)
     outcome = crud_sorter(crud, prepped)
-    return "Hello World! %s + %s = %s" % (crud, row, outcome)
+    return "Hello Hell! %s + %s = %s" % (crud, row, outcome)
 
 
 if __name__ == "__main__":

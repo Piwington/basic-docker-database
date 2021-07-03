@@ -1,10 +1,10 @@
 FROM python:3
 
-WORKDIR /python
+WORKDIR ./
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY python/ .
+COPY python/ ./
 
 CMD [ "python", "crud_functions.py" ]
