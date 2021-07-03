@@ -1,12 +1,10 @@
 FROM python:3
 
-WORKDIR /usr/src/app
+WORKDIR /python
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-#Basic Dockerfile Template. Temp Comment Out Unused.
-#TODO Delete Any Still Commented After Completion.
-#COPY . .
+COPY python/ .
 
-#CMD [ "python", "./your-daemon-or-script.py" ]
+CMD [ "python", "server.py" ]
