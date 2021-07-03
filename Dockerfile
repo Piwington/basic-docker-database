@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY python/ .
 
-CMD [ "python", "server.py" ]
+CMD [ "python", "crud_functions.py" ]
