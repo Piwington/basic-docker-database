@@ -1,4 +1,7 @@
+from flask import Flask
+import json
 import psycopg2
+server = Flask(__name__)
 
 
 def postgres_connection():
@@ -60,11 +63,23 @@ def crud_sorter(crud, row):
             raise Exception
 
         connection.commit()
+    except:
+        return "Error"
     finally:
         if cursor is not None:
             cursor.close()
         if connection is not None:
             connection.close()
+    return "Success"
 
 
-crud_sorter("u", {"user_id": "2", "forename": "D", "surname": "C", "email": "@"})
+@server.route("/<crud>/<row>")
+def hello(crud, row):
+    prepped = json.loads(row)
+    outcome = crud_sorter(crud, prepped)
+    return "Hello World! %s + %s = %s" % (crud, row, outcome)
+
+
+if __name__ == "__main__":
+    server.run(host='0.0.0.0')
+# crud_sorter("c", {"user_id": "2", "forename": "D", "surname": "C", "email": "@", "phone_number": "065"})
