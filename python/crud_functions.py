@@ -79,9 +79,8 @@ def crud_sorter(crud, row):
 def hello(crud, row):
     prepped = json.loads(row)
     outcome = crud_sorter(crud, prepped)
-    return "Hello Hell! %s + %s = %s" % (crud, row, outcome)
+    return "Action Running! %s with data %s. Outcome is: %s" % (crud, row, outcome)
 
 
 if __name__ == "__main__":
     server.run(host='0.0.0.0')
-# crud_sorter("c", {"user_id": "2", "forename": "D", "surname": "C", "email": "@", "phone_number": "065"})
