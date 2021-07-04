@@ -34,7 +34,7 @@ def crud_sorter(crud, row):
             message += "Created User With. Forename - %s, Surname - %s, Email - %s, Phone Number - %s" % values
         elif crud == "r":
             select = "SELECT * FROM system_users WHERE"
-            values = ()
+            values = []
             first = True
             for column in row.keys():
                 if column in ['user_id', 'forename', 'surname', 'email', 'phone_number']:
@@ -43,9 +43,8 @@ def crud_sorter(crud, row):
                     else:
                         select += " AND"
                     select += " " + column + " = %s"
-                    new_pair = tuple(row[column])
-                    values = values + new_pair
-
+                    values = values.append(row[column])
+            values = tuple(values)
             cursor.execute(select, values)
             database_rows = cursor.fetchall()
             outputs = "Selected Users. "
